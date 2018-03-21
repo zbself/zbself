@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   creationComplete="windowedapplication_creationCompleteHandler(event)"
+					   width="800" height="800"
+					   >
+	
+	<fx:Script source="ZB.as"/>
+	<fx:Script >
+		<![CDATA[
+			import com.coltware.airxmail.encode.Base64;
+			import com.zb.as3.ZBLogo;
+			import com.zb.as3.air.util.HardwareUtil;
+			import com.zb.as3.debug.Debug;
+			import com.zb.as3.debug.Stats;
+			import com.zb.as3.debug.log;
+			import com.zb.as3.debug.util.PropertyTools;
+			import com.zb.as3.events.ZEvent;
+			import com.zb.as3.text.Text;
+			import com.zb.as3.util.EditionUtil;
+			import com.zb.as3.util.EventUtil;
+			import com.zb.as3.util.device.soundas.SoundManager;
+			import com.zb.as3.util.display.ImageDecoder;
+			import com.zb.as3.util.display.TransformUtil;
+			import com.zb.as3.util.math.CountUtil;
+			import com.zb.as3.util.short.debug;
+			import com.zb.as3.util.sleep.SleepTimer;
+			import com.zb.as3.util.text.FilePath;
+			import com.zb.as3.zlib.filedownload.core.zFileDownloadItem;
+			import com.zb.as3.zlib.filedownload.core.zFileDownloadMode;
+			import com.zb.as3.zlib.filedownload.events.zFileDownloadErrorEvent;
+			import com.zb.as3.zlib.filedownload.events.zFileDownloadEvent;
+			import com.zb.as3.zlib.filedownload.events.zFileDownloadProgressEvent;
+			import com.zb.as3.zlib.filedownload.util.URLDecode;
+			import com.zb.as3.zlib.filedownload.zFileDownload;
+			import com.zb.as3.zlib.filedownload.zFilesDownload;
+			import com.zb.as3.zlib.patchs.core.zPathEvent;
+			import com.zb.as3.zlib.patchs.zPatchs;
+			import com.zb.as3.zlib.zip.util.zip.ZipFileReader;
+			
+			import flash.utils.getTimer;
+			import flash.utils.setTimeout;
+			
+			import mx.events.FlexEvent;
+			import mx.logging.ILogger;
+			import mx.logging.Log;
+			import mx.states.State;
+			import mx.utils.Base64Encoder;
+			
+			import org.osflash.signals.natives.sets.TimerSignalSet;
+			import org.osmf.elements.ImageElement;
+			import org.room13.slf4fx.Slf4FxLoggingTarget;
+			
+			import spark.components.Button;
+			import spark.components.Panel;
+
+			private var pan:Panel;
+
+			private var fileDownloads:zFilesDownload;
+			
+			private var num:int = 5;
+			
+			private function dispath123(e:ZEvent):void
+			{
+				trace("123 -3: "+e.toString());
+				
+			}
+			protected function windowedapplication_creationCompleteHandler(event:FlexEvent):void
+			{
+				var __desc:XML = NativeApplication.nativeApplication.applicationDescriptor;
+				var __ns:Namespace = __desc.namespace();
+				trace(__desc.__ns::["filename"]);
+				
+				trace( HardwareUtil.getLocalAddress());
+				trace( HardwareUtil.getHardwareAddress());
+				trace( HardwareUtil.getHardwareAddressByName());
+				
+				
+				var timeSleep:SleepTimer = new SleepTimer(1000,5);
+				this.addEventListener(MouseEvent.CLICK,function(e:MouseEvent):void
+					{
+//						trace(e.toString());
+//						trace(timeSleep.currentCount );
+//						timeSleep.reset();
+					}
+				);
+				timeSleep.addEventListener(TimerEvent.TIMER_COMPLETE,function(e:TimerEvent):void
+					{
+						trace(e.toString());
+					}
+				);
+//				timeSleep.start();
+				
+				return;
+				EventUtil.listener("123123",function(e:ZEvent):void
+				{
+					trace("123 -1: "+e.info);
+				});
+				EventUtil.on("123123",function(ee:ZEvent):void
+				{
+					trace("123 -2: "+ee.toString());
+				});
+				EventUtil.on("123123",dispath123);
+				
+				EventUtil.send("123123","456456");
+				
+				EventUtil.off("123123",dispath123);
+				
+				var sp:Sprite = new Sprite();
+				EventUtil.addEventListenerOnce(sp,"123123",dispath123);
+				
+				EventUtil.send("123123","ABCDE",sp);
+				
+				EventUtil.send("123123","456456");
+				
+				
+				var aa:MovieClip = new MovieClip();
+				aa.as3 = "AS3";
+				
+				var stat:Stats = new Stats();
+				
+				var arrs:Array = PropertyTools.getProperties(stat);
+				var arrsvar:Array = PropertyTools.getVariables(stat);
+				var arrsvar1:Array = PropertyTools.getMethods(stat);
+
+				EventUtil.getInstance();
+				EventUtil.removeInstance();
+				
+				var soundM:SoundManager = new SoundManager();
+				soundM.loadSound("sound0.mp3","111",100);
+				soundM.loadSound("sound1.mp3","222");
+				soundM.play("111");
+				soundM.play("222",0.2,2000,-1);
+				
+			
+				trace("123[B]456".replace(/\[B\]/g,"XXX"));
+				
+				trace( String.fromCharCode(100));
+				trace("84".charCodeAt(1));
+				trace(0x30);
+				
+				
+				trace(500000000000000+3000000000000000000000);
+				trace( Number.MAX_VALUE -100);
+				
+				trace( CountUtil.add("500000000000000","3000000000000000000000"));
+				trace( EditionUtil.exout(1,0,1,'',true,EditionUtil.RELEASE,'open '));
+				trace( EditionUtil.exout(1,0,1,'',true));
+				var aEdition:String = EditionUtil.exout(1,0,1,'',true,EditionUtil.RELEASE);
+				
+				trace( EditionUtil.compareVersion( aEdition , EditionUtil.exout(1,0,1,'',true,EditionUtil.RELEASE) ));
+				
+				return;
+				var pat:zPatchs = new zPatchs();
+				pat.addEventListener(zPathEvent.PATCH_COMPLETE,onPathComplete);
+				pat.download("http://down10.zol.com.cn/ip/dvd_codec11290306.zip",new File(File.applicationDirectory.resolvePath("download/ok.zip").nativePath),true,true,"测试一",false,true,null,true);
+				
+				var logg:ILogger = Log.getLogger("com.coltware.airxzip.ZipFileReader");
+				
+				Log.addTarget(new Slf4FxLoggingTarget("myApplication", "mySecret"));
+				
+				var a:Vector.<Number> = new Vector.<Number>();
+				a.push(1,2,3,4);
+				
+				var b:Vector.<Number> = new Vector.<Number>();
+				b.push(5,6,7,8);
+				trace(a +" "+b );
+				b = b.concat(a);
+				trace(b);
+				
+				fileDownloads = new zFilesDownload(zFileDownloadMode.UPDATER,2);
+				fileDownloads.addEventListener(zFileDownloadEvent.DOWNLOAD_COMPLETE,downloadComplete);
+				var file1:File = new File( File.applicationDirectory.resolvePath("bin/temp1.zip").nativePath );
+				var file2:File = new File( File.applicationDirectory.resolvePath("bin/temp2.zip").nativePath );
+				var file3:File = new File( File.applicationDirectory.resolvePath("bin/temp3.zip").nativePath );
+				var file4:File = new File( File.applicationDirectory.resolvePath("bin/temp4.zip").nativePath );
+				var file5:File = new File( File.applicationDirectory.resolvePath("bin/temp5.zip").nativePath );
+				var file6:File = new File( File.applicationDirectory.resolvePath("bin/temp6.zip").nativePath );
+				var file7:File = new File( File.applicationDirectory.resolvePath("bin/temp7.zip").nativePath );
+				var file8:File = new File( File.applicationDirectory.resolvePath("bin/temp8.zip").nativePath );
+				var file9:File = new File( File.applicationDirectory.resolvePath("bin/temp9.zip").nativePath );
+				var file10:File = new File( File.applicationDirectory.resolvePath("bin/temp10.zip").nativePath );
+				var file11:File = new File( File.applicationDirectory.resolvePath("bin/temp11.zip").nativePath );
+
+				arrs = [
+					new zFileDownloadItem("http://down10.zol.com.cn/ip/dvd_codec11290306.zip",file1,true),
+					new zFileDownloadItem("https://mirrors.tuna.tsinghua.edu.cn/apache/flex/tourdeflex/1.2/apache-flex-tour-de-flex-component-explorer-1.2-src.zip",file2),
+					new zFileDownloadItem("thunder://QUFodHRwOi8vZG93bjEwLnpvbC5jb20uY24vaXAvZHZkX2NvZGVjMTEyOTAzMDYuemlwWlo=",file3),
+					new zFileDownloadItem("http://down10.zol.com.cn/ip/dvd_codec11290306.zip",file4),
+					new zFileDownloadItem("http://down10.zol.com.cn/ip/dvd_codec11290306.zip",file5),
+					new zFileDownloadItem("http://down10.zol.com.cn/ip/dvd_codec11290306.zip",file6),
+					new zFileDownloadItem("http://down10.zol.com.cn/ip/dvd_codec11290306.zip",file7),
+					new zFileDownloadItem("http://down10.zol.com.cn/ip/dvd_codec11290306.zip",file8),
+					new zFileDownloadItem("http://down10.zol.com.cn/ip/dvd_codec11290306.zip",file9),
+					new zFileDownloadItem("http://down10.zol.com.cn/ip/dvd_codec11290306.zip",file10),
+					new zFileDownloadItem("http://down10.zol.com.cn/ip/dvd_codec11290306.zip",file11)
+				];
+				fileDownloads.addEventListener(zFileDownloadEvent.EXISTS,onFileExistsHandler);
+				fileDownloads.addEventListener(zFileDownloadEvent._404,onFile404Handler);
+				fileDownloads.addEventListener(zFileDownloadErrorEvent.SERVER_CLOSE,onServerCloseHandler);
+				fileDownloads.addEventListener(zFileDownloadProgressEvent.PROGRESS,onProgressHandler);
+//				fileDownloads.addItems([arrs[0], arrs[1], arrs[2]]);
+//				fileDownloads.addItems([arrs[0], arrs[1], arrs[2], arrs[3], arrs[4], arrs[5], arrs[6], arrs[7], arrs[8], arrs[9], arrs[10]]);
+				fileDownloads.addItems([arrs[0], arrs[1], arrs[2], arrs[3], arrs[4]]);
+				
+				return;
+				Debug.DEBUG = true;
+				Debug.logUrl = "http://localhost:1990/flashphp";
+//				Debug.trace("debug","error");
+				var abb:int = 1;
+				abb ||= 100;
+				trace(abb);
+			
+				ui.addChild(Text.creatTextField("123123",500,500,"Microsoft YaHei",true,0x0,30));
+				
+//				ui.addChild( new ZBLogo());
+				
+				var spr2:Sprite= new Sprite();
+				spr2.x = 200;
+				spr2.y = 200;
+				spr2.graphics.beginFill(0xFF0000);
+				spr2.graphics.drawRect(0,0,100,100);
+				spr2.graphics.endFill();
+				spr2.graphics.beginFill(0x00FF00);
+				spr2.graphics.drawRect(100,0,100,100);
+				spr2.graphics.endFill();
+				
+				ui.addChild( spr2 );
+				
+				var spr:Sprite = new Sprite();
+				spr.x = 200;
+				spr.y = 200;
+				spr.graphics.beginFill(0xFF0000);
+				spr.graphics.drawRect(0,0,100,100);
+				spr.graphics.endFill();
+				spr.graphics.beginFill(0x00FF00);
+				spr.graphics.drawRect(100,0,100,100);
+				spr.graphics.endFill();
+				
+				ui.addChild( spr );
+				TransformUtil.scaleAt(spr,0.5,0.5,new Point(20,20));
+				spr.cacheAsBitmap = true;
+				spr.rotation = 10;
+//				TransformUtil.rotateAt( spr , 20 ,new Point(0,20) );
+				
+				var file:File = File.applicationDirectory.resolvePath("image.jpg");
+				trace(file.nativePath);
+				var filePath:FilePath = new FilePath(file.nativePath);
+				trace( filePath.drive );
+				trace( filePath.paths );
+				trace( filePath.filename );
+				trace( filePath.extension );
+				trace( filePath.pathUrl );
+				
+				pan = new Panel();
+				pan.width = 200;
+				pan.height = 200;
+				pan.addEventListener(Event.ADDED_TO_STAGE,addToStage);
+				pan.title = "123";
+				this.addElement( pan );
+			}
+			
+			protected function addToStage(event:Event):void
+			{
+				trace( pan.width +" "+pan.height );
+				var px:ByteArray = ImageDecoder.BitmapDataToByteArray( pan);
+				trace( ImageDecoder.ByteArrayToBitmap( px ) );
+			}
+			private var arrs:Array;
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				fileDownloads.maxParallelTaskNum++;
+				if(fileDownloads.maxParallelTaskNum>=arrs.length)
+				{
+					fileDownloads.maxParallelTaskNum = 0;
+				}
+				trace( fileDownloads.maxParallelTaskNum +"-并行数" );
+			}
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				fileDownloads.addItem(arrs[num]);
+				num++;
+			}
+			protected function downloadComplete(event:zFileDownloadEvent):void
+			{
+				trace( zFileDownload(event.data).stamp +" 已下载成功");
+			}
+			
+			protected function onProgressHandler(event:zFileDownloadProgressEvent):void
+			{
+				var filePath:FilePath = new FilePath(zFileDownload(event.data).stamp);
+//				trace( filePath.filename +" - " +filePath.extension);
+				var proc: Number = (int(event.progress*10000))/100;
+				ProgressBar(this[filePath.filename]).setProgress(proc,100);
+				ProgressBar(this[filePath.filename]).label = filePath.filename+" 下载 : "+proc+"%";
+			}
+			protected function onFileExistsHandler(event:zFileDownloadEvent):void
+			{
+				var filePath:FilePath = new FilePath(zFileDownload(event.data).stamp);
+				ProgressBar(this[filePath.filename]).setProgress(1,1);
+				ProgressBar(this[filePath.filename]).label = filePath.filename+" 下载 : 100%";
+			}
+			
+			protected function onFile404Handler(event:zFileDownloadEvent):void
+			{
+				trace(zFileDownload(event.data).stamp +"404");
+			}
+			
+			protected function onServerCloseHandler(event:zFileDownloadErrorEvent):void
+			{
+				trace(zFileDownload(event.data).stamp +"server close");
+			}
+			
+			protected function onPathComplete(event:zPathEvent):void
+			{
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<mx:UIComponent id="ui" />
+	
+	<s:VGroup>
+		<s:Button label="并行++" click="button_clickHandler(event)" />
+		<s:Button label="任务++" click="button1_clickHandler(event)" />
+	</s:VGroup>
+	<s:VGroup top="100">
+		<mx:ProgressBar id="temp1" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+		<mx:ProgressBar id="temp2" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+		<mx:ProgressBar id="temp3" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+		<mx:ProgressBar id="temp4" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+		<mx:ProgressBar id="temp5" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+		<mx:ProgressBar id="temp6" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+		<mx:ProgressBar id="temp7" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+		<mx:ProgressBar id="temp8" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+		<mx:ProgressBar id="temp9" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+		<mx:ProgressBar id="temp10" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+		<mx:ProgressBar id="temp11" mode="manual" minimum="0" maximum="100" labelPlacement="center"/>
+	</s:VGroup>
+</s:WindowedApplication>
